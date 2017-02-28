@@ -1,0 +1,26 @@
+CREATE TABLE Fleet (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Ship(
+  id SERIAL PRIMARY KEY ,
+  Fleet_id INTEGER NOT NULL REFERENCES fleet(id) ON DELETE CASCADE,
+  name VARCHAR(50) NOT NULL,
+  datebuilt DATE
+);
+
+CREATE TABLE Sailor(
+  id SERIAL PRIMARY KEY ,
+  Ship_id INTEGER NOT NULL REFERENCES Ship(id),
+  name VARCHAR(50) NOT NULL ,
+  dateOfBirth DATE
+);
+
+CREATE TABLE Duties(
+  id SERIAL PRIMARY KEY ,
+  Sailor_id INTEGER NOT NULL REFERENCES Sailor(id),
+  start_date DATE,
+  end_date DATE
+
+);
